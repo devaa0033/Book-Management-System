@@ -1,4 +1,3 @@
-// app/api/db-status/route.ts
 import { promisePool } from "@/lib/db";
 import { NextResponse } from "next/server";
 
