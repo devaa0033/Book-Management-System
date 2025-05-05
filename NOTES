@@ -3,6 +3,12 @@ DB_USER = root
 DB_PASSWORD = root
 DB_DATABASE = Books_Management_system
 
+ACCESS_TOKEN_SECRET = defwefedsefde234
+REFRESH_TOKEN_SECRET = vfvfdbhghdfv123
+
+EXPIRE_ACCESS_TOKEN = 1d
+EXPIRE_REFRESH_TOKEN = 5d
+
 
 📁 your-project/
 ├── 📁 app/
