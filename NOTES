@@ -8,19 +8,19 @@ DB_DATABASE = Books_Management_system
 ├── 📁 app/
 │   ├── 📁 api/                         # API routes for database interaction
 │   │   ├── 📁 books/
-│   │   │   └── route.ts               # GET all, POST new book
+│   │   │   └── route.js               # GET all, POST new book
 │   │   ├── 📁 categories/
-│   │   │   └── route.ts
+│   │   │   └── route.js
 │   │   ├── 📁 library_members/
-│   │   │   └── route.ts
+│   │   │   └── route.js
 │   │   ├── 📁 staff/
-│   │   │   └── route.ts
+│   │   │   └── route.js
 │   │   ├── 📁 borrow/
-│   │   │   └── route.ts
+│   │   │   └── route.js
 │   │   ├── 📁 fines/
-│   │   │   └── route.ts
+│   │   │   └── route.js
 │   │   └── 📁 auth/
-│   │       └── route.ts              # Login/Register handlers
+│   │       └── route.js              # Login/Register handlers
 │
 │   ├── 📁 dashboard/                  # Admin dashboard pages
 │   │   ├── 📁 layout.tsx             # Common dashboard layout
@@ -46,22 +46,23 @@ DB_DATABASE = Books_Management_system
 ├── 📁 lib/
 │   ├── db.ts                          # MySQL connection using mysql2/promise
 │   └── queries/
-│       ├── books.ts                   # SQL queries for books
-│       ├── members.ts
-│       ├── borrow.ts
-│       └── staff.ts
+│       ├── books.js                   # SQL queries for books
+│       ├── members.js
+│       ├── borrow.js
+│       └── staff.js
+│       └── User.js
 │
 ├── 📁 middleware/
-│   └── authMiddleware.ts             # Protect routes (token/session)
+│   └── authMiddleware.js             # Protect routes (token/session)
 │
 ├── 📁 types/
-│   ├── book.ts
-│   ├── member.ts
-│   └── borrow.ts
+│   ├── book.js
+│   ├── member.js
+│   └── borrow.js
 │
 ├── 📁 validations/
-│   ├── bookSchema.ts                 # Zod validation
-│   └── memberSchema.ts
+│   ├── bookSchema.js                 # Zod validation
+│   └── memberSchema.js
 │
 ├── 📁 sql/
 │   ├── init.sql                      # Table creation script
