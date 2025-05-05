@@ -9,6 +9,7 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME
 });
 
+
 // Test connection once when starting the app
 async function testConnection() {
     try {
