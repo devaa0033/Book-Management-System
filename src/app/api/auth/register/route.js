@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { createUser, loginUser } from '@/lib/queries/auth.js';
-import {loginSchema, memberSchema} from '@/validations/memberSchema.js';
+import { createUser } from '@/lib/queries/auth.js';
+import { memberSchema} from '@/validations/memberSchema.js';
 import bcrypt from "bcryptjs";
 
 
