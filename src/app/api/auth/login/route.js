@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { loginUser } from '@/lib/queries/auth.js';
+import { loginUser, storeRefreshToken } from '@/lib/queries/auth.js';
 import {loginSchema} from '@/validations/memberSchema.js';
 
 import {generateAccessToken, generateRefreshToken} from '@/middleware/authMiddleware.js';
@@ -26,6 +26,9 @@ export async function POST(req) {
         const accessToken = generateAccessToken(result.user);
         const refreshToken = generateRefreshToken(result.user);
 
+        //Store refresh token in database
+        await storeRefreshToken(result.user.id, refreshToken);
+
         const response = NextResponse.json({message: 'User logged in successfully',accessToken,
             refreshToken, user: result.user}, {status: 200} );
 
@@ -51,3 +54,5 @@ export async function POST(req) {
         );
     }
 }
+
+

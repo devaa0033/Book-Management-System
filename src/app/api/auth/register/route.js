@@ -71,4 +71,43 @@ export async function POST (req) {
     "phone": "8975645821",
     "address": "123 Main St, Pune",
     "password": "abc123"
-}*/
+}
+    
+{
+  "name": "Aarav Mehta",
+  "email": "aarav.mehta@example.com",
+  "phone": "9876543210",
+  "address": "101 MG Road, Mumbai",
+  "password": "pass@1234"
+}
+
+
+{
+  "name": "Priya Iyer",
+  "email": "priya.iyer@example.com",
+  "phone": "9123456789",
+  "address": "56 Residency Road, Bangalore",
+  "password": "securePass!1"
+}
+
+
+{
+  "name": "Rajesh Kumar",
+  "email": "rajesh.kumar@example.com",
+  "phone": "9988776655",
+  "address": "22 Sector 15, Noida",
+  "password": "Rajesh@2024"
+}
+
+
+{
+  "name": "Sneha Patel",
+  "email": "sneha.patel@example.com",
+  "phone": "9012345678",
+  "address": "14 Satellite Road, Ahmedabad",
+  "password": "Sneha123$"
+}
+
+
+
+*/

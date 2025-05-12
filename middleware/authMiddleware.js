@@ -10,7 +10,7 @@ const JWT_REFRESH_SECRET = process.env.REFRESH_TOKEN_SECRET;
 export const generateAccessToken = (user) => {
     const payload = {
         id: user.id,
-        username: user.username
+        username: user.name
     };
     const token = jwt.sign(payload, JWT_ACCESS_SECRET,
         {
@@ -26,7 +26,7 @@ export const generateAccessToken = (user) => {
 export const generateRefreshToken = (user) => {
     const payload = {
         id: user.id,
-        username: user.username
+        username: user.name
     };
     const token = jwt.sign(payload, JWT_REFRESH_SECRET,
         {
