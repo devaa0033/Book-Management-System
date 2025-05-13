@@ -1,14 +1,13 @@
 "use client";
 
 import { createContext, useState, useEffect } from "react";
-import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Load user from localStorage on client after mount
   useEffect(() => {
     try {
       const savedUser = localStorage.getItem("user");
@@ -22,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
 
   const login = async (inputs) => {
     try {
-      const res = await axios.post("/api/auth/login", inputs, {
+      const res = await axiosInstance.post("/auth/login", inputs, {
         withCredentials: true,
       });
 
@@ -37,8 +36,27 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      await axiosInstance.post("/auth/signOut", null, {
+        withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      localStorage.removeItem("user");
+      localStorage.removeItem("accessToken");
+      setCurrentUser(null);
+    } catch (error) {
+      console.error("Logout Failed", error);
+      throw error;
+      
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext.Provider value={{ currentUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

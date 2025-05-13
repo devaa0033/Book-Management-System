@@ -1,15 +1,26 @@
 'use client';
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';  
+import axios from 'axios';
 import { AuthContext } from '@/context/authContext';
+import { useRouter } from 'next/navigation'; 
 
 export default function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser, logout } = useContext(AuthContext);
+    const router = useRouter();
 
     const toggleDropdown = () => {
         setDropdownOpen(!dropdownOpen);
     };
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            router.push('/login');
+        } catch (error) {
+            console.error('Logout failed:', error); 
+        }
+    }
 
     return (
         <>
@@ -36,28 +47,27 @@ export default function Navbar() {
                     <div className="relative">
                         <button type="button" className="flex items-center focus:outline-none" onClick={toggleDropdown}>
                             <div className="w-10 h-10 rounded-full overflow-hidden">
-                                <img
-                                    src={currentUser.profilePic}
-                                    alt="avatar"
-                                    className="w-full h-full object-cover"
-                                />
+                                {currentUser && currentUser.profilePic && (
+                                    <img src={currentUser.profilePic} alt="Profile" />
+                                )}
                             </div>
+
                         </button>
                         <ul className={`absolute right-0 mt-2 w-56 bg-white shadow-md rounded-md text-sm ${dropdownOpen ? 'block' : 'hidden'}`}>
                             {currentUser ? (
-                                    <li className="flex items-center gap-3 p-3 border-b">
-                                        <div className="w-10 h-10 rounded-full overflow-hidden">
-                                            <img
-                                                src= {currentUser.profilePic}
-                                                alt="avatar"
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                        <div>
-                                            <h6 className="font-semibold text-gray-800">{currentUser.name}</h6>
-                                            <small className="text-gray-500">{currentUser.role}</small>
-                                        </div>
-                                    </li>
+                                <li className="flex items-center gap-3 p-3 border-b">
+                                    <div className="w-10 h-10 rounded-full overflow-hidden">
+                                        <img
+                                            src={currentUser.profilePic}
+                                            alt="avatar"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div>
+                                        <h6 className="font-semibold text-gray-800">{currentUser.name}</h6>
+                                        <small className="text-gray-500">{currentUser.role}</small>
+                                    </div>
+                                </li>
                             ) : (
                                 <li>No users found</li>
                             )}
@@ -74,7 +84,13 @@ export default function Navbar() {
                                 <a href="#" className="block px-4 py-2 hover:bg-gray-100">❓ FAQs</a>
                             </li>
                             <li>
-                                <a href="#" className="block px-4 py-2 text-red-600 hover:bg-red-50">🚪 Sign out</a>
+                                <button
+                                    onClick={handleLogout}
+                                    className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50"
+                                >
+                                    🚪 Sign out
+                                </button>
+
                             </li>
                         </ul>
                     </div>
